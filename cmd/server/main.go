@@ -15,7 +15,7 @@ import (
 )
 
 var MigrationDir = "file://../../migrations"
-var CsvFile = "../../movies_metadata_new.csv"
+var CsvFile = "../../movies_metadata.csv"
 
 func main() {
 	db, err := utils.GetDb()
