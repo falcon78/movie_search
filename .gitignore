@@ -4,3 +4,4 @@ tmp
 .idea
 cmd/server/server
 caddy_data/*
+pg_data

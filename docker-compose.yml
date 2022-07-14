@@ -37,7 +37,7 @@ services:
       - "31415:31415"
     depends_on:
       - movie_pg
-#    restart: unless-stopped
+    restart: unless-stopped
 
 volumes:
   postgres:
