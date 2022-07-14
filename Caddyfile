@@ -1,0 +1,7 @@
+http://movie.sujank.me {
+        redir https://{host}{uri}
+}
+
+https://movie.sujank.me {
+        reverse_proxy realtime_iot:31415
+}

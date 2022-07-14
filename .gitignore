@@ -1,0 +1,6 @@
+timescale
+.env
+tmp
+.idea
+cmd/server/server
+caddy_data/*

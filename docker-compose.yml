@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+# disable caddy by default
+
+#  caddy:
+#    image: caddy:2.4.6-alpine
+#    restart: unless-stopped
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    volumes:
+#      - ./Caddyfile:/etc/caddy/Caddyfile
+#      - ./caddy_data:/data
+
+  movie_pg:
+    container_name: movie_pg
+    image: postgres:14.4-alpine
+    env_file:
+      - .env
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  movie_go:
+    build: .
+    container_name: movie_go
+    command: sh -c "wait-for-it.sh movie_pg:5432 -t 20 --strict -- go build && ./server"
+    # command: sh -c "go build && ./server"
+    env_file:
+      - .env
+    volumes:
+      - .:/movie
+    ports:
+      - "31415:31415"
+    depends_on:
+      - movie_pg
+#    restart: unless-stopped
+
+volumes:
+  postgres:

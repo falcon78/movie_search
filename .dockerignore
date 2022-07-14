@@ -1,0 +1,5 @@
+pg_data
+.env
+tmp
+.idea
+cmd/server/tmp
