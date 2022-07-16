@@ -150,8 +150,14 @@ export default {
                             <div class="card-body">
                             <h5 class="card-title">{{movie.title}}</h5>
                             <p class="card-text">{{movie.overview}}</p>
-<!--                            TODO: add genres and production company-->
-                            <p class="card-text"><small class="text-muted">Released on {{movie.release_date}}</small></p>
+                            <p class="card-text" style="margin-bottom: 5px !important;">
+                                    Rating: {{movie.vote_average}}/10 ({{movie.vote_count}})
+                            </p>
+                            <div class="progress" style="width: 200px">
+                                <div class="progress-bar bg-success" role="progressbar" :style="{width: Math.round(movie.vote_average*10)+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                            <p class="card-text mt-4"><small class="text-muted">Released on {{movie.release_date}}</small></p>
                             </div>
                         </div>
                     </div>
