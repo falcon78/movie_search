@@ -3,5 +3,5 @@ http://movie.sujank.me {
 }
 
 https://movie.sujank.me {
-        reverse_proxy realtime_iot:31415
+        reverse_proxy movie_go:31415
 }

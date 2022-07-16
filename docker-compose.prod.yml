@@ -25,7 +25,7 @@ services:
   movie_go:
     build: .
     container_name: movie_go
-    command: sh -c "wait-for-it.sh movie_pg:5432 -t 20 --strict -- go build && ./server"
+    command: sh -c "wait-for-it.sh movie_pg:5432 -t 20 --strict -- go build -buildvcs=false && ./server"
     env_file:
       - .env
     volumes:
