@@ -35,12 +35,17 @@ export default {
 
     template: `
       <div id="sidebar">
-      <nav>
-        <button v-on:click="goToHome">Home</button>
-      </nav>
-      <hr>
+        <nav class="navbar bg-dark">
+          <div class="container-fluid">
+              <a class="navbar-brand text-light" href="#" @click="goToHome">
+              <img src="./assets/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                  Movie Search
+              </a>
+          </div>
+        </nav>
       </div>
-      <div id="content">
+      <div class="m-3"></div>
+      <div id="content" class="m-3">
       <component :is="page || 'homepage'"></component>
       </div>
     `,

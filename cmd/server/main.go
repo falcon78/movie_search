@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/golang-migrate/migrate/v4"
 	"os"
 	"strings"
 
@@ -24,13 +23,13 @@ func main() {
 	}
 
 	// Run database migrations
-	if m, err := migrate.New(MigrationDir, utils.GetDatabaseStringForMigrate()); err != nil {
-		panic(err)
-	} else {
-		if err := m.Up(); err != nil && err != migrate.ErrNoChange {
-			panic(err)
-		}
-	}
+	//if m, err := migrate.New(MigrationDir, utils.GetDatabaseStringForMigrate()); err != nil {
+	//	panic(err)
+	//} else {
+	//	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+	//		panic(err)
+	//	}
+	//}
 
 	if strings.ToLower(os.Getenv("INIT_DB")) == "true" {
 		if movieInfos, productions, genres, err := utils.InsertCsvToDatabase(CsvFile); err != nil {
@@ -57,6 +56,7 @@ func main() {
 
 	// Api Routes
 	e.GET("/api/search/movies", app.searchMovies)
+	e.GET("/api/movie/:movieId/additionalInfo", app.GetMovieAdditionalInfo)
 	// e.POST("/api/channel/create/:channelName", app.createChannel, basicAuth())
 	// e.DELETE("/api/channel/delete/:channelId", app.deleteChannel, basicAuth())
 

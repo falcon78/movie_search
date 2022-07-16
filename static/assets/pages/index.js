@@ -1,5 +1,7 @@
-import graph from './graph.js'
+import home from './home.js'
+import movie from './movie.js'
 
 export {
-    graph,
+    home,
+    movie
 }

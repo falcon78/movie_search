@@ -1,7 +1,7 @@
 package models
 
 type Production struct {
-	ID   int64  `json:"id"`
+	ID   int64  `json:"-"`
 	Name string `json:"name"`
 }
 

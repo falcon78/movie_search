@@ -23,3 +23,15 @@ func (r *Repo) InsertProductionRelations(info models.MovieInfo) error {
 
 	return r.DB.Create(&productions).Error
 }
+
+func (r *Repo) GetAllProductionsForMovie(movieId uint) ([]models.Production, error) {
+	var result []models.Production
+
+	if err := r.DB.
+		Raw("select * from movie_production_view where id = ?", movieId).
+		Scan(&result).Error; err != nil {
+		return result, err
+	}
+
+	return result, nil
+}

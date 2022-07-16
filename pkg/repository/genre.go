@@ -23,3 +23,15 @@ func (r *Repo) InsertGenreRelations(info models.MovieInfo) error {
 
 	return r.DB.Create(&genres).Error
 }
+
+func (r *Repo) GetAllGenresForMovie(movieId uint) ([]models.Genre, error) {
+	var result []models.Genre
+
+	if err := r.DB.
+		Raw("select * from movie_genre_view where id = ?", movieId).
+		Scan(&result).Error; err != nil {
+		return result, err
+	}
+
+	return result, nil
+}
