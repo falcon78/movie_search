@@ -19,9 +19,9 @@ type MovieSearchResult struct {
 	TotalResults int64          `json:"totalResults"`
 }
 
-func (r *Repo) GetMovies() (*[]models.Movie, error) {
-	var movies []models.Movie
-	if err := r.DB.Find(&movies).Error; err != nil {
+func (r *Repo) GetMovie(id int) (*models.Movie, error) {
+	var movies models.Movie
+	if err := r.DB.Where("id = ?", id).First(&movies).Error; err != nil {
 		return &movies, err
 	}
 	return &movies, nil

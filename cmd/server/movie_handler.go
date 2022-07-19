@@ -50,6 +50,21 @@ type MovieAdditionalInfo struct {
 	Productions []models.Production `json:"productions"`
 }
 
+func (a *app) GetMovieInfo(c echo.Context) error {
+	movieId, err := strconv.ParseInt(c.Param("movieId"), 10, 64)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "bad movie id")
+	}
+
+	repo := repository.NewRepository(a.db)
+	movie, err := repo.GetMovie(int(movieId))
+	if err != nil {
+		return c.String(http.StatusInternalServerError, "errored when retrieving movie from database")
+	}
+
+	return c.JSON(http.StatusOK, movie)
+}
+
 func (a *app) GetMovieAdditionalInfo(c echo.Context) error {
 	movieId, err := strconv.ParseInt(c.Param("movieId"), 10, 64)
 	if err != nil {

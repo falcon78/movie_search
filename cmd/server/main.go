@@ -56,9 +56,8 @@ func main() {
 
 	// Api Routes
 	e.GET("/api/search/movies", app.searchMovies)
+	e.GET("/api/movie/:movieId", app.GetMovieInfo)
 	e.GET("/api/movie/:movieId/additionalInfo", app.GetMovieAdditionalInfo)
-	// e.POST("/api/channel/create/:channelName", app.createChannel, basicAuth())
-	// e.DELETE("/api/channel/delete/:channelId", app.deleteChannel, basicAuth())
 
 	// Serve static assets for frontend
 	e.Static("/assets", "../../static/assets")
