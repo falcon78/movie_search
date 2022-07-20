@@ -1,17 +1,34 @@
-# Example
+# 実行方法
 
-<img src="./media/realtime_iot_video_small.gif" width="800">
+本アプリケーションを実行するPCにDockerが入ってない場合はDockerをインストールしてください。
 
-# Running
+## 環境変数の設定
 
-- Create env file and set the values accordingly.
+`.env`ファイルが存在しない場合は下記のコマンドで生成してください。
 
 ```
 cp .example.env .env
 ```
 
-- Run the application
+## データベースを立ち上げる
 
+最初にPostgresを下記のコマンドで立ち上げてください。
 ```
-docker compose up
+docker compose up movie_pg -d
 ```
+
+## データダンプをインポートする
+ユーザー名とパスワードは`.env`ファイルの中に書いてあります。
+`.example.env`をコーピしてそのまま使っている場合はユーザー名が`movie_pg`でパスワードが`password`になります。
+```bash
+psql -h localhost -d postgres -U movie_pg -f pg_dump.sql
+```
+
+## アプリケーションを立ち上げる
+
+下記のコマンドでアプリケーションを立ち上げてください。
+```bash
+docker compose up movie_go
+```
+
+アプリケーションは`localhost:31415`からアクセスできます。
